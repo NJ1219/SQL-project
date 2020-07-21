@@ -23,7 +23,7 @@ There are 5 tables that I created which are shown in the diagram along with the 
 
 ### Data Engineering
 
-Using your database model as a blueprint, I created a database schema for each of your tables and relationships which include data types, primary keys, foreign keys, and any other constraints I defined. The ERD file, schema, seed and query files are stored in the folder "SQL Files"
+Using the database model as a blueprint, I created a database schema for each of your tables and relationships which include data types, primary keys, foreign keys, and any other constraints I defined. The ERD file, schema, seed and query files are stored in the folder "SQL Files"
 
 
 ### Data Analysis
@@ -93,6 +93,7 @@ ORDER BY t.amount DESC LIMIT 100;
 
 * Some fraudsters hack a credit card by making several small payments (generally less than $2.00), which are typically ignored by cardholders. Count the transactions that are less than $2.00 per cardholder. Is there any evidence to suggest that a credit card has been hacked? Explain your rationale.
 
+### Query
 SELECT c.cardholder_id
 , c.cardholder_name
 , count(t.transation_id)
@@ -107,6 +108,8 @@ ORDER BY  count(transation_id)  DESC ;
 
 The above query returns the list of customers with the total number of transactions of less than $2 for each cardholder. After that, the first query can be run again by changing the cardholder_id for each query and putting in another clause for transaction amount of less than $2. Then the results can be analysed further in detail.
 
+
+### Query
 SELECT c.cardholder_id
 , c.cardholder_name
 , cc.cardnumber
@@ -131,7 +134,7 @@ The tranasactions for top 5 cardholders with the most number of transactions wor
 
 
 * What are the top 5 merchants prone to being hacked using small transactions?
-
+### Query
 SELECT m.merchant_name
 , m.merchant_id
 , mc.category_name
