@@ -32,7 +32,7 @@ Finally, the data analysis is done through importing the queries and the related
 
 * How can you isolate (or group) the transactions of each cardholder?
 ### --Query
-```
+--
 CREATE VIEW customer AS  
  SELECT c.cardholder_id
 , c.cardholder_name
@@ -50,7 +50,7 @@ LEFT JOIN transactions AS t ON cc.cardnumber = t.cardnumber
 LEFT JOIN merchant AS m ON m.merchant_id = t.merchant_id
 LEFT JOIN merchant_category AS mc ON mc.category_id = m.category_id;
 --WHERE c.cardholder_id = 12; 
-```  
+--
 
 The above query will fetch all the records based on a particular customer and further operations can be performed by creating a view and specifying the cardholder_id in the query. 
 
@@ -59,7 +59,7 @@ The above query will fetch all the records based on a particular customer and fu
 * Consider the time period 7:00 a.m. to 9:00 a.m.
 * What are the top 100 highest transactions during this time period?
 ### Query 
-```
+
 SELECT c.cardholder_id
 , c.cardholder_name
 , cc.cardnumber
@@ -77,7 +77,6 @@ LEFT JOIN merchant AS m ON m.merchant_id = t.merchant_id
 LEFT JOIN merchant_category AS mc ON mc.category_id = m.category_id
 WHERE EXTRACT(HOUR FROM t.transaction_date)>= 7 AND EXTRACT(HOUR FROM t.transaction_date)<9
 ORDER BY t.amount DESC LIMIT 100;
-```
 -
 
   * Do you see any fraudulent or anomalous transactions?
@@ -94,7 +93,6 @@ ORDER BY t.amount DESC LIMIT 100;
 
 * Some fraudsters hack a credit card by making several small payments (generally less than $2.00), which are typically ignored by cardholders. Count the transactions that are less than $2.00 per cardholder. Is there any evidence to suggest that a credit card has been hacked? Explain your rationale.
 
-```
 ### Query
 SELECT c.cardholder_id
 , c.cardholder_name
@@ -107,10 +105,10 @@ LEFT JOIN transactions AS t ON cc.cardnumber = t.cardnumber
 WHERE t.amount<2
 GROUP BY c.cardholder_name, c.cardholder_id
 ORDER BY  count(transation_id)  DESC ;
-```
+
 The above query returns the list of customers with the total number of transactions of less than $2 for each cardholder. After that, the first query can be run again by changing the cardholder_id for each query and putting in another clause for transaction amount of less than $2. Then the results can be analysed further in detail.
 
-```
+
 ### Query
 SELECT c.cardholder_id
 , c.cardholder_name
@@ -128,7 +126,7 @@ LEFT JOIN transactions AS t ON cc.cardnumber = t.cardnumber
 LEFT JOIN merchant AS m ON m.merchant_id = t.merchant_id
 LEFT JOIN merchant_category AS mc ON mc.category_id = m.category_id
 WHERE c.cardholder_id = 12 AND t.amount<2; 
-```
+
 ---
 The tranasactions for top 5 cardholders with the most number of transactions worth less than $2 were analysed. There seems to be no proof regarding the hacking of any credit card as the transactions are spaced out in date. 
 
@@ -136,7 +134,6 @@ The tranasactions for top 5 cardholders with the most number of transactions wor
 
 
 * What are the top 5 merchants prone to being hacked using small transactions?
-```
 ### Query
 SELECT m.merchant_name
 , m.merchant_id
@@ -150,7 +147,7 @@ LEFT JOIN merchant_category as mc on m.category_id = mc.category_id
 WHERE t.amount<2
 GROUP BY m.merchant_name, m.merchant_id, mc.category_name
 ORDER BY  count(transation_id)  DESC ;
-```
+
 
 Food Trucks and Coffee Shops may have a lot of transactions which are less than $2, so no conclusion can be derived on it.But for pubs, bars and resaturants, a payment of $2 might be suspicious. The following list contains 5 such merchants along with their category and number of transactions less than $2. 
 
