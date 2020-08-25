@@ -17,13 +17,13 @@ Created an entity relationship diagram (ERD) by inspecting the provided CSV file
 *[Quick Database Diagram](Quick_DBD.png)
 
 
-There are 5 tables that I created which are shown in the diagram along with the relationships to define among the tables.
+There are 5 tables that were created which are shown in the diagram along with the relationships to define among the tables.
 
 
 
 ### Data Engineering
 
-Using the database model as a blueprint, I created a database schema for each of your tables and relationships which include data types, primary keys, foreign keys, and any other constraints I defined. The ERD file, schema, seed and query files are stored in the folder "SQL Files"
+Using the database model as a blueprint, a database "schema" was created for each of your tables and relationships which include data types, primary keys, foreign keys, and any other constraints as defined. The ERD file, schema, seed and query files are stored in the folder "SQL Files"
 
 
 ### Data Analysis
@@ -80,10 +80,10 @@ ORDER BY t.amount DESC LIMIT 100;
 ```
 -
 
-  * Do you see any fraudulent or anomalous transactions?
+  * DAre there any fraudulent or anomalous transactions?
     * Yes. There seems to be 2 possible fraudulent transactions.
 
-  * If you answered yes to the previous question, explain why you think there might be fraudulent transactions during this time frame.
+  * If the answer is yes to the previous question, explain why you think there might be fraudulent transactions during this time frame.
     
     There are 9 spends of more than $1000 in Pubs, bars and restaurants in early morning but few of them are repetitive spends and can point to consumer regular habit. 
       * Transaction ids 3163, 968 and 1368 are by the same person at different times and can point to all night parties and the large amount points towards a group. The person may be settling the bill in the morning.
